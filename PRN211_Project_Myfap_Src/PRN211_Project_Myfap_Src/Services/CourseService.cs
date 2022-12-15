@@ -17,7 +17,18 @@ namespace PRN211_Project_Myfap_Src.Services
 
         public override Course getById(int id)
         {
-            throw new NotImplementedException();
+            using (var context = new APContext())
+            {
+                return context.Courses.
+                    Include(c => c.Campus).
+                    Include(c => c.Instructor).
+                    Include(c => c.Subject).
+                    Include(c => c.Term).
+                    Include(c => c.Students).
+                    Include(c => c.CourseSchedules)
+                    .Where(c => c.CourseId == id).FirstOrDefault();
+            }
+            return null;
         }
 
         public override List<Course> getList()

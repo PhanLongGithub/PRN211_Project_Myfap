@@ -77,7 +77,11 @@
                                     if (item.TeachingDate.Day == date.Day && item.Slot == slot)
                                     {
                                         <td>
-                                            <p><a href="">@item.CourseCode</a></p>
+                                            <p>
+                                                <a href="/Instructor/MoveToViewAttendance/@item.CourseId/@item.SubjectId/@item.InstructorId/@item.Term.TermId">
+                                                    @item.CourseCode
+                                                </a>
+                                            </p>
                                             <p>@item.SubjectName</p>
                                             <p>At @item.RoomCode</p>
                                         </td>

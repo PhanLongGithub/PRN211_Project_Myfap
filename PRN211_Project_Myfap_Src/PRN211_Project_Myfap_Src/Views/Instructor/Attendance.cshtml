@@ -4,11 +4,51 @@
 @{
 }
 @using PRN211_Project_Myfap_Src.Models
-@model RollCallBook
+@model CourseSchedule
 
 <html>
     <body>
         <h2>Single activity Attendance</h2>
-        <p>Attendance for </p>
+        <button><a href="/Instructor/MoveToTakeAttendance/@ViewBag.course.CourseId/@ViewBag.subject.SubjectId/@ViewBag.instructor.InstructorId/@ViewBag.term.TermId">Take Attendance</a></button>
+        <p>Attendance for @ViewBag.subject.SubjectCode with 
+            leature @ViewBag.instructor.InstructorFirstName @ViewBag.instructor.InstructorMidName @ViewBag.instructor.InstructorLastName
+            at slot @Model.Slot on @Model.TeachingDate , @ViewBag.term.TermName
+            , in room @Model.Room.RoomCode at University
+            </p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Group</th>
+                    <th>Roll</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Taken</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.course.Students)
+                {
+                    <tr>
+                        <th>@ViewBag.course.CourseCode</th>
+                        <th>@item.Roll</th>
+                        <th>@item.FirstName @item.MidName @item.LastName</th>
+                        @foreach (RollCallBook roll in Model.RollCallBooks)
+                        {
+                            if(roll.StudentId == item.StudentId){
+                                if(roll.IsAbsent == true){
+                                    <td>Absent</td>
+                                }
+                                else{
+                                    <td>Present</td>
+                                }
+                            }
+                        }
+                        <th>
+                        @ViewBag.instructor.InstructorFirstName @ViewBag.instructor.InstructorMidName @ViewBag.instructor.InstructorLastName
+                        </th>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </body>
 </html>

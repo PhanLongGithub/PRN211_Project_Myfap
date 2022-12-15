@@ -17,7 +17,11 @@ namespace PRN211_Project_Myfap_Src.Services
 
         public override CourseSchedule getById(int id)
         {
-            throw new NotImplementedException();
+            using (var context = new APContext())
+            {
+                return context.CourseSchedules.Include(c => c.Course).Include(c => c.Room).Include(c => c.RollCallBooks).Where(cs => cs.CourseId == id).FirstOrDefault();
+            }
+            return null;
         }
 
         public override List<CourseSchedule> getList()

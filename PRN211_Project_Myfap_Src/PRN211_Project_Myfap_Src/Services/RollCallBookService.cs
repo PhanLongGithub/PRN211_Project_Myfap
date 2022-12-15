@@ -37,5 +37,24 @@ namespace PRN211_Project_Myfap_Src.Services
         {
             throw new NotImplementedException();
         }
+
+        public void takeAttendance(int id, string status)
+        {
+            bool flag = false;
+            if (status.Equals("true", StringComparison.OrdinalIgnoreCase))
+            {
+                flag = true;
+            }
+            using (var context = new APContext())
+            {
+                RollCallBook rollCallBook = context.RollCallBooks
+                        .Include(r => r.TeachingSchedule)
+                        .Include(r => r.Student)
+                        .Where(r => r.RollCallBookId == id)
+                        .FirstOrDefault();
+                rollCallBook.IsAbsent = flag;
+                context.SaveChanges();
+            }
+        }
     }
 }

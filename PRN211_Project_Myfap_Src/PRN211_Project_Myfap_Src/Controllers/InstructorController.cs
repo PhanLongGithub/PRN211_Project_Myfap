@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using PRN211_Project_Myfap_Src.Models;
 using PRN211_Project_Myfap_Src.Services;
+using System.Security.Cryptography;
 
 namespace PRN211_Project_Myfap_Src.Controllers
 {
@@ -88,20 +89,48 @@ namespace PRN211_Project_Myfap_Src.Controllers
             return View(WeeklySchedule);
         }
 
-        public IActionResult MoveToTakeAttendance(int rId, int sId, int iId, int tId)
+        public IActionResult MoveToViewAttendance(int cId, int sId, int iId, int tId)
         {
-            RollCallBook rollCallBook = rollCallBookService.getById(rId);
+            CourseSchedule courseSchedule = CourseScheduleService.getById(cId);
             Term term = termService.getById(tId);
             Subject subject = subjectService.getById(sId);
             Instructor instructor = instructorService.getById(iId);
+            Course course = courseService.getById(courseSchedule.CourseId.Value);
 
+            ViewBag.course = course;
             ViewBag.term = term;
             ViewBag.subject = subject;
             ViewBag.instructor = instructor;
-            return View("Attendance",rollCallBook);
+            return View("Attendance", courseSchedule);
         }
-        {
 
+        public IActionResult MoveToTakeAttendance(int cId, int sId, int iId, int tId)
+        {
+            CourseSchedule courseSchedule = CourseScheduleService.getById(cId);
+            Term term = termService.getById(tId);
+            Subject subject = subjectService.getById(sId);
+            Instructor instructor = instructorService.getById(iId);
+            Course course = courseService.getById(courseSchedule.CourseId.Value);
+
+            ViewBag.course = course; 
+            ViewBag.term = term;
+            ViewBag.subject = subject;
+            ViewBag.instructor = instructor;
+            return View("TakeAttendance", courseSchedule);
         }
+
+        public IActionResult TakeAttendance(int cId, int sId, int iId, int tId)
+        {
+            Course course = courseService.getById(cId);
+            foreach(Student student in course.Students)
+            {
+                string raw_studentStatus = Request.Query["status_" + student.StudentId];
+                rollCallBookService.takeAttendance(student.StudentId, raw_studentStatus);
+            }
+            return RedirectToAction("MoveToViewAttendance", new RouteValueDictionary(
+                new { controller = "Instructor", action = "MoveToViewAttendance", cId = 0, sId = 0, iId = 0, tId = 0 }
+                ));
+        }
+
     }
 }

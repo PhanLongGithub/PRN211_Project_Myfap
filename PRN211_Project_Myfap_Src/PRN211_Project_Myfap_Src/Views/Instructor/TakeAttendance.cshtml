@@ -1,0 +1,70 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@using PRN211_Project_Myfap_Src.Models
+@model CourseSchedule
+
+<html>
+<body>
+    <h2>Single activity Attendance</h2>
+    <p>
+        Attendance for @ViewBag.subject.SubjectCode with
+        leature @ViewBag.instructor.InstructorFirstName @ViewBag.instructor.InstructorMidName @ViewBag.instructor.InstructorLastName
+        at slot @Model.Slot on @Model.TeachingDate , @ViewBag.term.TermName
+        , in room @Model.Room.RoomCode at University
+    </p>
+    <form action="/Instructor/TakeAttendance/" method="get">
+        <table>
+            <thead>
+                <tr>
+                    <th>Group</th>
+                    <th>Roll</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Taken</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.course.Students)
+                {
+                    <tr>
+                        <th>@ViewBag.course.CourseCode</th>
+                        <th>@item.Roll</th>
+                        <th>@item.FirstName @item.MidName @item.LastName</th>
+                        @foreach (RollCallBook roll in Model.RollCallBooks)
+                        {
+                            if (roll.StudentId == item.StudentId)
+                            {
+                                if (roll.IsAbsent == true)
+                                {
+                                    <td>Absent</td>
+                                }
+                                else
+                                {
+                                    <td>Present</td>
+                                }
+                            }
+                        }
+                        <th>
+                            @ViewBag.instructor.InstructorFirstName @ViewBag.instructor.InstructorMidName @ViewBag.instructor.InstructorLastName
+                        </th>
+                        <th>
+                            <input type="radio" value="true" name="status_@item.StudentId" id="status" checked>Absent
+                            <input type="radio" value="false" name="status_@item.StudentId" id="status">Present
+                        </th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <input type="hidden" name="cId" value="@ViewBag.course.CourseId" />
+        <input type="hidden" name="sId" value="@ViewBag.subject.SubjectId" />
+        <input type="hidden" name="iId" value="@ViewBag.instructor.InstructorId" />
+        <input type="hidden" name="tId" value="@ViewBag.term.TermId" />
+        <button name="Save" type="submit">Save</button>
+    </form>
+</body>
+</html>
+

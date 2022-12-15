@@ -11,6 +11,11 @@ internal class Program
             pattern: "/{controller=Instructor}/{action=Calender}"
             );
 
+        app.MapControllerRoute(
+            name: "default",
+            pattern: "/{controller=Instructor}/{action}/{cId}/{sId}/{iId}/{tId}"
+            );
+
         app.Run();
     }
 }
