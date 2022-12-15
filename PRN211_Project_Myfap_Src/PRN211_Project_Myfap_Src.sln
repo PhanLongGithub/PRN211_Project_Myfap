@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32825.248
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PRN211_Project_Myfap_Src", "PRN211_Project_Myfap_Src\PRN211_Project_Myfap_Src.csproj", "{8BDD2D06-4450-4CE8-AD50-E1806C89A812}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataServices", "C:\Users\phanl\Downloads\DemoAddNN\DataServices\DataServices.csproj", "{C6B20EB8-17BE-4C9C-9292-083A77ADB1FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8BDD2D06-4450-4CE8-AD50-E1806C89A812}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BDD2D06-4450-4CE8-AD50-E1806C89A812}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BDD2D06-4450-4CE8-AD50-E1806C89A812}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BDD2D06-4450-4CE8-AD50-E1806C89A812}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6B20EB8-17BE-4C9C-9292-083A77ADB1FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6B20EB8-17BE-4C9C-9292-083A77ADB1FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6B20EB8-17BE-4C9C-9292-083A77ADB1FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6B20EB8-17BE-4C9C-9292-083A77ADB1FE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5D6B5A6F-CBE2-4A7C-A4ED-CDDB1186D19D}
+	EndGlobalSection
+EndGlobal

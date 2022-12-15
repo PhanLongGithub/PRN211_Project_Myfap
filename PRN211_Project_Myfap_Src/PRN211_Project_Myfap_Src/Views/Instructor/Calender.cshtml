@@ -1,0 +1,102 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<html>
+    <body>
+    <form action="/Instructor/Calender/" method="get">
+        <label for="Term">Term:</label>
+        <select id="Term" name="tId" onchange="this.form.submit()">
+            @foreach (var t in ViewBag.terms)
+            {
+                <option value="@t.TermId" @((t.TermId == (int)ViewData["SelectedTerm"])?"selected":"")>
+                    @t.TermName
+                    </option>
+            }
+        </select><br />
+
+        <label for="Campus">Campus:</label>
+        <select id="Campus" name="cId" onchange="this.form.submit()">
+            @foreach (var c in ViewBag.campus)
+            {
+                <option value="@c.CampusId" @((c.CampusId == (int)ViewData["SelectedCampus"])?"selected":"")>
+                    @c.CampusCode
+                    </option>
+            }
+        </select><br />
+
+        <label for="Ins">Campus:</label>
+        <select id="Ins" name="Iid" onchange="this.form.submit()">
+            @foreach (var i in ViewBag.Ins)
+            {
+                <option value="@i.InstructorId" @((i.InstructorId == (int)ViewData["SelectedInstructor"])?"selected":"")>
+                    @i.InstructorLastName @i.InstructorMidName @i.InstructorFirstName
+                    </option>
+            }
+        </select><br />
+
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    <p>Date/Slot</p>
+                        <select id="week" name="week" onchange="this.form.submit()">
+                            @foreach (var week in ViewBag.Weeks)
+                            {
+                                <option value="@week.Key" @((week.Key == (int)ViewData["SelectedWeek"])?"selected":"")>
+                                    <p>From @week.Value[0].Date.ToShortDateString() To @week.Value[6].Date.ToShortDateString()</p>
+                                </option>
+                            }
+                        </select>
+                </th>
+                @foreach (var item in ViewBag.week.Value)
+                {
+                    <th>
+                        <p>@item.DayOfWeek</p>
+                        <p>@item.Date.ToShortDateString()</p>
+                    </th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @if(Model.Count <= 0){
+                <tr>
+                    <td>Not Found Schedule</td>
+                </tr>
+            }
+            @if(Model.Count > 0){
+               @for (int slot = 1; slot <= 8; slot++)
+               {
+                 <tr>
+                     <th>Slot @slot</th>
+                     @for (var date = ViewBag.Week.Value[0]; date <= ViewBag.Week.Value[6]; date = date.AddDays(1))
+                     {
+                                @foreach (var item in Model)
+                                {
+                                    if (item.TeachingDate.Day == date.Day && item.Slot == slot)
+                                    {
+                                        <td>
+                                            <p><a href="">@item.CourseCode</a></p>
+                                            <p>@item.SubjectName</p>
+                                            <p>At @item.RoomCode</p>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        if (item == Model[1])
+                                        {
+                                            <td>-</td>
+                                        }
+                                    }
+                                }
+                     }
+                 </tr>  
+               }
+            }
+        </tbody>
+    </table>
+    </form>
+
+    </body>
+</html>

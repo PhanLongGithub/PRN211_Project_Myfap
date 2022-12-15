@@ -1,0 +1,24 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = PRN211_Project_Myfap_Src
+build_property.RootNamespace = PRN211_Project_Myfap_Src
+build_property.ProjectDir = D:\Project\FPT\SE1627-NET_PRN\Prn211_Project\PRN211_Project_Myfap\PRN211_Project_Myfap_Src\PRN211_Project_Myfap_Src\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\Project\FPT\SE1627-NET_PRN\Prn211_Project\PRN211_Project_Myfap\PRN211_Project_Myfap_Src\PRN211_Project_Myfap_Src
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/Project/FPT/SE1627-NET_PRN/Prn211_Project/PRN211_Project_Myfap/PRN211_Project_Myfap_Src/PRN211_Project_Myfap_Src/Views/Instructor/Attendance.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5zdHJ1Y3RvclxBdHRlbmRhbmNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Project/FPT/SE1627-NET_PRN/Prn211_Project/PRN211_Project_Myfap/PRN211_Project_Myfap_Src/PRN211_Project_Myfap_Src/Views/Instructor/Calender.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5zdHJ1Y3RvclxDYWxlbmRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
